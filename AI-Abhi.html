@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Nikam - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundPulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundPulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            padding: 16px 32px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header:hover {
+            background: rgba(10, 10, 10, 0.9);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .connect-btn {
+            padding: 12px 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .connect-btn:hover {
+            background: var(--accent-gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Main Sections */
+        .section {
+            min-height: 100vh;
+            padding: 120px 5% 60px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .typing-animation {
+            border-right: 2px solid var(--accent-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(20, end), blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-primary); }
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 2rem 0;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            right: 5%;
+            bottom: 10%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transform: rotate(90deg);
+            transform-origin: center;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+            border-radius: 50px 50px 0 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-image {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 30px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--accent-gradient);
+            opacity: 0.1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 120px 5%;
+        }
+
+        .skills-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-family: 'Playfair Display', serif;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-secondary);
+            padding: 120px 5%;
+        }
+
+        .projects-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-family: 'Playfair Display', serif;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 80px rgba(99, 102, 241, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.7rem 1.5rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 120px 5%;
+        }
+
+        .experience-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .experience h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-family: 'Playfair Display', serif;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-gradient);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .timeline-content h3 {
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .company {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .period {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-secondary);
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--accent-gradient);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                width: 90%;
+                padding: 12px 20px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .profile-image {
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: rgba(99, 102, 241, 0.3);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">ABHISHEK N.</div>
+        <nav class="nav">
+            <a href="#about" class="nav-item">About</a>
+            <a href="#projects" class="nav-item">Projects</a>
+            <a href="#experience" class="nav-item">Experience</a>
+            <a href="#contact" class="nav-item">Contact</a>
+        </nav>
+        <a href="#contact" class="connect-btn">Let's Connect</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>
+                    <span class="hero-title typing-animation">Curious Learner</span><br>
+                    <span class="hero-subtitle">& Creative Problem-Solver</span>
+                </h1>
+                <p class="hero-description">
+                    An AIML student passionate about diving deep into innovative technologies, solving complex problems, and building impactful solutions that make a difference.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">7.45</div>
+                        <div class="stat-label">CGPA</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Leadership Roles</div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">01/05 — SCROLL ↓</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Abhishek Nikam</h2>
+                <p>Engineer by Skill, <strong style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">DREAMER</strong> by Soul!</p>
+                <p>I'm a Computer Science and Engineering student specializing in AI/ML at Pimpri Chinchwad College of Engineering. My journey in tech is driven by curiosity and a passion for creating solutions that bridge the gap between complex problems and elegant implementations.</p>
+                <p>As a tech enthusiast with experience in hackathons and real-world projects, I'm constantly exploring emerging technologies like cloud computing and DevOps, while building a strong foundation in machine learning and full-stack development.</p>
+                <p>When I'm not coding, you'll find me leading innovation initiatives, organizing tech events, or diving deep into the latest technological trends that shape our digital future.</p>
+            </div>
+            <div class="profile-image">
+                <img src="./images/img2.jpg" alt="Abhishek Nikam">
+            </div>
+        </div>
+        <div class="scroll-indicator">02/05 — SCROLL ↓</div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills">
+        <div class="skills-content">
+            <h2>Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>AI/ML</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Ensemble Methods</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Netlify</span>
+                        <span class="skill-tag">VS Code</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Critical Thinking</span>
+                        <span class="skill-tag">Team Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="projects-content">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Live School Website</h3>
+                    <p>Developed and deployed a fully functional website for a local school featuring responsive design, interactive UI/UX elements, and optimized performance. The website serves as a comprehensive platform for school information and student resources.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://6832b8b1c27ee90401a885b8--creative-granita-8db63d.netlify.app/" class="project-link" target="_blank">Live Demo</a>
+                        
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>TalentSync - Job Portal Web Application</h3>
+                    <p>Built a comprehensive job portal platform enabling seamless interaction between recruiters and job seekers. Features include job listing, advanced filtering, secure authentication, and real-time application tracking.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" target="_blank">Live Demo</a>
+                        <a href="https://github.com/AbhiXO7/TalentSync" class="project-link secondary" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>CNN Ensemble Model Research</h3>
+                    <p>Developed a novel computational model improving CNN classifier performance using ensemble approaches. This research project won 1st prize at ML Baby Conference and demonstrates advanced machine learning techniques.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">CNN</span>
+                        <span class="tech-tag">Ensemble Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://drive.google.com/file/d/1eI1ZkCmVFuiY6at5IBieIUOmWHItxLfa/view?usp=sharing" class="project-link" target="_blank">Research Paper</a>
+                        
+                    </div>
+                </div>
+
+                <!-- <div class="project-card">
+                    <h3>Smart India Hackathon Project</h3>
+                    <p>Qualified for SIH Round 2 with an innovative solution addressing real-world challenges. The project showcases problem-solving skills and technical expertise in developing scalable solutions.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Full Stack</span>
+                        <span class="tech-tag">AI/ML</span>
+                        <span class="tech-tag">Innovation</span>
+                        <span class="tech-tag">Team Leadership</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Project Details</a>
+                        <a href="#" class="project-link secondary">Presentation</a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="scroll-indicator">03/05 — SCROLL ↓</div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="experience-content">
+            <h2>Experience & Leadership</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Design Head</h3>
+                        <div class="company">Institution's Innovation Council, PCCOE</div>
+                        <div class="period">2025 - Current</div>
+                        <p>Leading design initiatives and creative direction for innovation events. Overseeing visual identity and user experience design for various council projects and initiatives.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Member</h3>
+                        <div class="company">IEEE</div>
+                        <div class="period">2025 - Current</div>
+                        <p>Actively participating in professional development through IEEE webinars, workshops, and peer-reviewed technical activities. Contributing to the tech community through knowledge sharing.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Finance Head</h3>
+                        <div class="company">Institution's Innovation Council, PCCOE</div>
+                        <div class="period">2024 - 2025</div>
+                        <p>Managed budget planning and resource allocation for innovation and entrepreneurship events. Successfully conducted seminars and speaker sessions, including collaborations with Google professionals.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Junior Executive</h3>
+                        <div class="company">AiMSA, PCCOE</div>
+                        <div class="period">2024 - Current</div>
+                        <p>Organized and assisted in technical workshops, speaker sessions, and AI/ML competitions. Fostering a community of AI enthusiasts and promoting knowledge sharing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">04/05 — SCROLL ↓</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="contact-content">
+            <h2>Let's Build Something Amazing</h2>
+            <p>I'm always excited to collaborate on innovative projects and discuss new opportunities. Whether you're looking for a passionate developer, a creative problem-solver, or someone to lead your next tech initiative, let's connect!</p>
+            <div class="contact-links">
+                <a href="mailto:nikamabhi2004@gmail.com" class="contact-link" target="_blank">
+                    📧 Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/abhishek-nikam-88372128b/" class="contact-link" target="_blank">
+                    💼 LinkedIn
+                </a>
+                <a href="tel:+918329058141" class="contact-link">
+                    📱 Call Me
+                </a>
+                <a href="https://github.com/AbhiXO7" class="contact-link" target="_blank">
+                    💻 GitHub
+                </a>
+            </div>
+            <div style="margin-top: 3rem; color: var(--text-secondary); font-size: 0.9rem;">
+                <p>📍 Pune, Maharashtra | 🎓 CSE (AIML) Student | 🚀 Innovation Enthusiast</p>
+            </div>
+        </div>
+        <div class="scroll-indicator">05/05 — END</div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('.header');
+        
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateX(-50%) translateY(-100px)';
+            } else {
+                header.style.transform = 'translateX(-50%) translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+
+        // Typing animation restart on scroll
+        let typingAnimationPlayed = false;
+        
+        const typingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !typingAnimationPlayed) {
+                    const typingElement = entry.target;
+                    typingElement.style.animation = 'none';
+                    setTimeout(() => {
+                        typingElement.style.animation = 'typing 3s steps(20, end), blink 0.75s step-end infinite';
+                    }, 100);
+                    typingAnimationPlayed = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const typingElement = document.querySelector('.typing-animation');
+        if (typingElement) {
+            typingObserver.observe(typingElement);
+        }
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('body::before');
+            const speed = scrolled * 0.5;
+        });
+
+        // Dynamic cursor effect (optional enhancement)
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.7;
+            transition: transform 0.1s ease;
+            display: none;
+        `;
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.display = 'block';
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+        });
+
+        // Project card hover effects
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-10px) scale(1)';
+            });
+        });
+
+        // Skills animation on scroll
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillTags = entry.target.querySelectorAll('.skill-tag');
+                    skillTags.forEach((tag, index) => {
+                        setTimeout(() => {
+                            tag.style.transform = 'scale(1)';
+                            tag.style.opacity = '1';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.skill-category').forEach(category => {
+            const skillTags = category.querySelectorAll('.skill-tag');
+            skillTags.forEach(tag => {
+                tag.style.transform = 'scale(0.8)';
+                tag.style.opacity = '0';
+                tag.style.transition = 'all 0.3s ease';
+            });
+            skillsObserver.observe(category);
+        });
+    </script>
+</body>
+</html>
